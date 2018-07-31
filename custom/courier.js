@@ -22,62 +22,69 @@ $(document).ready(function() {
 			$('.form-group').removeClass('has-error').removeClass('has-success');
 			$('.text-danger').remove();
 				
-			var orderDate = $("#orderDate").val();
-			var clientName = $("#clientName").val();
-			var clientContact = $("#clientContact").val();
-			var paid = $("#paid").val();
-			var discount = $("#discount").val();
-			var paymentType = $("#paymentType").val();
-			var paymentStatus = $("#paymentStatus").val();		
+			var reqDate = $("#reqDate").val();
+			var reqBy = $("#reqBy").val();
+			var deptName = $("#deptName").val();
+			var compName = $("#compName").val();
+			var cityName = $("#cityName").val();
+			var dispatchCenter = $("#dispatchCenter").val();
+			var challan = $("#challan").val();		
+			var invValue = $("#invValue").val();		
 
 			// form validation 
-			if(orderDate == "") {
-				$("#orderDate").after('<p class="text-danger"> The Order Date field is required </p>');
-				$('#orderDate').closest('.form-group').addClass('has-error');
+			if(reqDate == "") {
+				$("#reqDate").after('<p class="text-danger"> The Requisition Date field is required </p>');
+				$('#reqDate').closest('.form-group').addClass('has-error');
 			} else {
-				$('#orderDate').closest('.form-group').addClass('has-success');
+				$('#reqDate').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(clientName == "") {
-				$("#clientName").after('<p class="text-danger"> The Client Name field is required </p>');
-				$('#clientName').closest('.form-group').addClass('has-error');
+			if(reqBy == "") {
+				$("#reqBy").after('<p class="text-danger"> The Requisition By field is required </p>');
+				$('#reqBy').closest('.form-group').addClass('has-error');
 			} else {
-				$('#clientName').closest('.form-group').addClass('has-success');
+				$('#reqBy').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(clientContact == "") {
-				$("#clientContact").after('<p class="text-danger"> The Contact field is required </p>');
-				$('#clientContact').closest('.form-group').addClass('has-error');
+			if(deptName == "") {
+				$("#deptName").after('<p class="text-danger"> The Department Name field is required </p>');
+				$('#deptName').closest('.form-group').addClass('has-error');
 			} else {
-				$('#clientContact').closest('.form-group').addClass('has-success');
+				$('#deptName').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(paid == "") {
-				$("#paid").after('<p class="text-danger"> The Paid field is required </p>');
-				$('#paid').closest('.form-group').addClass('has-error');
+			if(compName == "") {
+				$("#compName").after('<p class="text-danger"> The Company Name field is required </p>');
+				$('#compName').closest('.form-group').addClass('has-error');
 			} else {
-				$('#paid').closest('.form-group').addClass('has-success');
+				$('#compName').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(discount == "") {
-				$("#discount").after('<p class="text-danger"> The Discount field is required </p>');
-				$('#discount').closest('.form-group').addClass('has-error');
+			if(cityName == "") {
+				$("#cityName").after('<p class="text-danger"> The City Name field is required </p>');
+				$('#cityName').closest('.form-group').addClass('has-error');
 			} else {
-				$('#discount').closest('.form-group').addClass('has-success');
+				$('#cityName').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(paymentType == "") {
-				$("#paymentType").after('<p class="text-danger"> The Payment Type field is required </p>');
-				$('#paymentType').closest('.form-group').addClass('has-error');
+			if(dispatchCenter == "") {
+				$("#dispatchCenter").after('<p class="text-danger"> The Dispatch Center field is required </p>');
+				$('#dispatchCenter').closest('.form-group').addClass('has-error');
 			} else {
-				$('#paymentType').closest('.form-group').addClass('has-success');
+				$('#dispatchCenter').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(paymentStatus == "") {
-				$("#paymentStatus").after('<p class="text-danger"> The Payment Status field is required </p>');
-				$('#paymentStatus').closest('.form-group').addClass('has-error');
+			if(challan == "") {
+				$("#challan").after('<p class="text-danger"> The Challan No. field is required </p>');
+				$('#challan').closest('.form-group').addClass('has-error');
 			} else {
-				$('#paymentStatus').closest('.form-group').addClass('has-success');
+				$('#challan').closest('.form-group').addClass('has-success');
+			} // /else
+			if(invValue == "") {
+				$("#invValue").after('<p class="text-danger"> The Invoice Value field is required </p>');
+				$('#invValue').closest('.form-group').addClass('has-error');
+			} else {
+				$('#invValue').closest('.form-group').addClass('has-success');
 			} // /else
 
 
@@ -371,19 +378,6 @@ function addRow() {
 			$("#addRowBtn").button("reset");			
 
 			var tr = '<tr id="row'+count+'" class="'+arrayNumber+'">'+			  				
-				'<td>'+
-					'<div class="form-group">'+
-
-					'<select class="form-control" name="productName[]" id="productName'+count+'" onchange="getProductData('+count+')" >'+
-						'<option value="">~~SELECT~~</option>';
-						// console.log(response);
-						$.each(response, function(index, value) {
-							tr += '<option value="'+value[0]+'">'+value[1]+'</option>';							
-						});
-													
-					tr += '</select>'+
-					'</div>'+
-				'</td>'+
 				'<td style="padding-left:20px;"">'+
 					'<input type="text" name="rate[]" id="rate'+count+'" autocomplete="off" disabled="true" class="form-control" />'+
 					'<input type="hidden" name="rateValue[]" id="rateValue'+count+'" autocomplete="off" class="form-control" />'+

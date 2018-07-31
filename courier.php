@@ -115,10 +115,10 @@ require_once('includes/header.php'); ?>
 									<?php
 									$arrayNumber = 0;
 									for($x = 1; $x < 4; $x++) { ?>
-										<tr>			  				
+			  			<tr id="row<?php echo $x; ?>" class="<?php echo $arrayNumber; ?>">			  				
 											<td>
 												<div class="form-group">
-												<input type="number" name="quantity[]" id="srno<?php echo $x; ?>" onkeyup="getTotal(<?php echo $x ?>)" autocomplete="off" class="form-control" min="1" />
+												<input type="number" name="quantity[]" id="srno<?php echo $x; ?>" autocomplete="off" class="form-control" min="1" />
 												</div>
 											</td>
 											<td>			  					
@@ -334,4 +334,5 @@ require_once('includes/header.php'); ?>
 					</div>
 				</div>
 				</div>
+<script src="custom/courier.js"></script>
 <?php require_once 'includes/footer.php'; ?>

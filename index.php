@@ -92,7 +92,7 @@ tt=display_c();
 			
 		</div>
 		<div class="col-lg-4 col-md-4 col-sm-4">
-		<h2 style=font>Courier Management System</h2>
+		<h3 style="color: aliceblue;text-align: center;"><img src="assets/images/mahendras.png"  height="30" alt="Mahendra's" />Courier Management System</h3>
 					<div class="messages"><br><br><br>
 						<?php if($errors) {
 						foreach ($errors as $key => $value) {
