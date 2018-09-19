@@ -5,17 +5,17 @@ $(document).ready(function() {
 	var divRequest = $(".div-request").text();
 
 	// top nav bar 
-	$("#navOrder").addClass('active');
+	$("#navCourier").addClass('active');
 
 	if(divRequest == 'add')  {
-		// add order	
+		// add courier	
 		// top nav child bar 
-		$('#topNavAddOrder').addClass('active');	
+		$('#topNavAddCourier').addClass('active');	
 
-		// order date picker
+		// courier date picker
 		$("#reqDate").datepicker();
 
-		// create order form function
+		// create courier form function
 		$("#createCourierForm").unbind('submit').bind('submit', function() {
 			var form = $(this);
 
@@ -27,85 +27,101 @@ $(document).ready(function() {
 			var deptName = $("#deptName").val();
 			var compName = $("#compName").val();
 			var cityName = $("#cityName").val();
+			var particularType = $("#particularType").val();
 			var dispatchCenter = $("#dispatchCenter").val();
 			var challan = $("#challan").val();		
 			var invValue = $("#invValue").val();		
+			var courierStatus = $("#courierStatus").val();		
 
 			// form validation 
 			if(reqDate == "") {
-				$("#reqDate").after('<p class="text-danger"> The Requisition Date field is required </p>');
+				$("#reqDate").after('<p class="text-danger"> Please provide Requisition Date </p>');
 				$('#reqDate').closest('.form-group').addClass('has-error');
 			} else {
 				$('#reqDate').closest('.form-group').addClass('has-success');
 			} // /else
 
 			if(reqBy == "") {
-				$("#reqBy").after('<p class="text-danger"> The Requisition By field is required </p>');
+				$("#reqBy").after('<p class="text-danger"> Please provide Requisition By whom </p>');
 				$('#reqBy').closest('.form-group').addClass('has-error');
 			} else {
 				$('#reqBy').closest('.form-group').addClass('has-success');
 			} // /else
 
 			if(deptName == "") {
-				$("#deptName").after('<p class="text-danger"> The Department Name field is required </p>');
+				$("#deptName").after('<p class="text-danger"> Please provide Department Name </p>');
 				$('#deptName').closest('.form-group').addClass('has-error');
 			} else {
 				$('#deptName').closest('.form-group').addClass('has-success');
 			} // /else
 
 			if(compName == "") {
-				$("#compName").after('<p class="text-danger"> The Company Name field is required </p>');
+				$("#compName").after('<p class="text-danger"> Please provide Company Name </p>');
 				$('#compName').closest('.form-group').addClass('has-error');
 			} else {
 				$('#compName').closest('.form-group').addClass('has-success');
 			} // /else
 
 			if(cityName == "") {
-				$("#cityName").after('<p class="text-danger"> The City Name field is required </p>');
+				$("#cityName").after('<p class="text-danger"> Please provide City Name </p>');
 				$('#cityName').closest('.form-group').addClass('has-error');
 			} else {
 				$('#cityName').closest('.form-group').addClass('has-success');
 			} // /else
+				
+			if(particularType == "") {
+				$("#particularType").after('<p class="text-danger"> Please provide Particular Name </p>');
+				$('#particularType').closest('.form-group').addClass('has-error');
+			} else {
+				$('#particularType').closest('.form-group').addClass('has-success');
+			} // /else
 
 			if(dispatchCenter == "") {
-				$("#dispatchCenter").after('<p class="text-danger"> The Dispatch Center field is required </p>');
+				$("#dispatchCenter").after('<p class="text-danger"> Please provide Dispatch Center</p>');
 				$('#dispatchCenter').closest('.form-group').addClass('has-error');
 			} else {
 				$('#dispatchCenter').closest('.form-group').addClass('has-success');
 			} // /else
 
 			if(challan == "") {
-				$("#challan").after('<p class="text-danger"> The Challan No. field is required </p>');
+				$("#challan").after('<p class="text-danger"> Please provide Challan No. </p>');
 				$('#challan').closest('.form-group').addClass('has-error');
 			} else {
 				$('#challan').closest('.form-group').addClass('has-success');
 			} // /else
 			if(invValue == "") {
-				$("#invValue").after('<p class="text-danger"> The Invoice Value field is required </p>');
+				$("#invValue").after('<p class="text-danger"> Please provide Invoice Value </p>');
 				$('#invValue').closest('.form-group').addClass('has-error');
 			} else {
 				$('#invValue').closest('.form-group').addClass('has-success');
 			} // /else
+				
+			if(courierStatus == "") {
+				$("#courierStatus").after('<p class="text-danger"> Please assign Courier Status </p>');
+				$('#courierStatus').closest('.form-group').addClass('has-error');
+			} else {
+				$('#courierStatus').closest('.form-group').addClass('has-success');
+			} // /else
 
 
 			// array validation
-			var productName = document.getElementsByName('productName[]');				
-			var validateProduct;
-			for (var x = 0; x < productName.length; x++) {       			
-				var productNameId = productName[x].id;	    	
-		    if(productName[x].value == ''){	    		    	
-		    	$("#"+productNameId+"").after('<p class="text-danger"> Product Name Field is required!! </p>');
-		    	$("#"+productNameId+"").closest('.form-group').addClass('has-error');	    		    	    	
+			var itemDescription = document.getElementsByName('description[]');				
+			var validateitemcode;
+			for (var x = 0; x < itemDescription.length; x++) {       			
+				var itemDescriptionId = itemDescription[x].id;	    	
+		    if(itemDescription[x].value == ''){	    		    	
+		    	$("#"+itemDescriptionId+"").after('<p class="text-danger"> Please enter details of Particular. </p>');
+		    	$("#"+itemDescriptionId+"").closest('.form-group').addClass('has-error');	    		    	    	
 	      } else {      	
-		    	$("#"+productNameId+"").closest('.form-group').addClass('has-success');	    		    		    	
+		    	$("#"+itemDescriptionId+"").closest('.form-group').addClass('has-success');	    		    		    	
 	      }          
 	   	} // for
 
-	   	for (var x = 0; x < productName.length; x++) {       						
-		    if(productName[x].value){	    		    		    	
-		    	validateProduct = true;
+	   	for (var x = 0; x < itemDescription.length; x++) {       						
+		    if(itemDescription[x].value){	    		    		    	
+		    	validateitemcode = true;
 	      } else {      	
-		    	validateProduct = false;
+		    	validateitemcode = false;
 	      }          
 	   	} // for       		   	
 	   	
@@ -114,7 +130,7 @@ $(document).ready(function() {
 	   	for (var x = 0; x < quantity.length; x++) {       
 	 			var quantityId = quantity[x].id;
 		    if(quantity[x].value == ''){	    	
-		    	$("#"+quantityId+"").after('<p class="text-danger"> Product Name Field is required!! </p>');
+		    	$("#"+quantityId+"").after('<p class="text-danger"> Please enter details of Particular. </p>');
 		    	$("#"+quantityId+"").closest('.form-group').addClass('has-error');	    		    		    	
 	      } else {      	
 		    	$("#"+quantityId+"").closest('.form-group').addClass('has-success');	    		    		    		    	
@@ -128,13 +144,16 @@ $(document).ready(function() {
 		    	validateQuantity = false;
 	      }          
 	   	} // for       	
+
+
 	   	
 
-			if(orderDate && clientName && clientContact && paid && discount && paymentType && paymentStatus) {
-				if(validateProduct == true && validateQuantity == true) {
-					// create order button
-					// $("#createOrderBtn").button('loading');
-
+			if(reqDate && reqBy && deptName && compName && cityName && particularType && dispatchCenter && challan && invValue && dispatchCenter) {
+				if(validateitemcode == true && validateQuantity == true) {
+					// create courier button
+					 //$("#createCourierBtn").button('loading');
+					
+						
 					$.ajax({
 						url : form.attr('action'),
 						type: form.attr('method'),
@@ -143,7 +162,7 @@ $(document).ready(function() {
 						success:function(response) {
 							console.log(response);
 							// reset button
-							$("#createOrderBtn").button('reset');
+							$("#createCourierBtn").button('reset');
 							
 							$(".text-danger").remove();
 							$('.form-group').removeClass('has-error').removeClass('has-success');
@@ -154,8 +173,8 @@ $(document).ready(function() {
 								$(".success-messages").html('<div class="alert alert-success">'+
 	            	'<button type="button" class="close" data-dismiss="alert">&times;</button>'+
 	            	'<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
-	            	' <br /> <br /> <a type="button" onclick="printOrder('+response.order_id+')" class="btn btn-primary"> <i class="glyphicon glyphicon-print"></i> Print </a>'+
-	            	'<a href="orders.php?o=add" class="btn btn-default" style="margin-left:10px;"> <i class="glyphicon glyphicon-plus-sign"></i> Add New Order </a>'+
+	            	' <br /> <br />'+
+	            	'<a href="courier.php?o=add" class="btn btn-default" style="margin-left:10px;"> <i class="glyphicon glyphicon-plus-sign"></i> Add New Courier </a>'+
 	            	
 	   		       '</div>');
 								
@@ -164,7 +183,7 @@ $(document).ready(function() {
 							// disabled te modal footer button
 							$(".submitButtonFooter").addClass('div-hide');
 							// remove the product row
-							$(".removeProductRowBtn").addClass('div-hide');
+							$(".removeItemRowBtn").addClass('div-hide');
 								
 							} else {
 								alert(response.messages);								
@@ -176,105 +195,128 @@ $(document).ready(function() {
 			
 
 			return false;
-		}); // /create order form function	
+		}); // /create courier form function	
 	
-	} else if(divRequest == 'manord') {
+	} else if(divRequest == 'mancour') {	
 		// top nav child bar 
-		$('#topNavManageOrder').addClass('active');
+		$('#topNavManageCourier').addClass('active');
 
-		manageOrderTable = $("#manageOrderTable").DataTable({
-			'ajax': 'php_action/fetchOrder.php',
-			'order': []
+		manageCourierTable = $("#manageCourierTable").DataTable({
+			'ajax': 'php_action/fetchCourier.php',
+			'courier': []
 		});		
 					
-	} else if(divRequest == 'editOrd') {
-		$("#orderDate").datepicker();
+	} else if(divRequest == 'editcour') {
+		$("#reqDate").datepicker();
 
-		// edit order form function
-		$("#editOrderForm").unbind('submit').bind('submit', function() {
+		// edit courier form function
+		$("#editCourierForm").unbind('submit').bind('submit', function() {
 			// alert('ok');
 			var form = $(this);
 
 			$('.form-group').removeClass('has-error').removeClass('has-success');
 			$('.text-danger').remove();
 				
-			var orderDate = $("#orderDate").val();
-			var clientName = $("#clientName").val();
-			var clientContact = $("#clientContact").val();
-			var paid = $("#paid").val();
-			var discount = $("#discount").val();
-			var paymentType = $("#paymentType").val();
-			var paymentStatus = $("#paymentStatus").val();		
+			var reqDate = $("#reqDate").val();
+			var reqBy = $("#reqBy").val();
+			var deptName = $("#deptName").val();
+			var compName = $("#compName").val();
+			var cityName = $("#cityName").val();
+			var particularType = $("#particularType").val();
+			var dispatchCenter = $("#dispatchCenter").val();
+			var challan = $("#challan").val();		
+			var invValue = $("#invValue").val();		
+			var courierStatus = $("#courierStatus").val();		
 
 			// form validation 
-			if(orderDate == "") {
-				$("#orderDate").after('<p class="text-danger"> The Order Date field is required </p>');
-				$('#orderDate').closest('.form-group').addClass('has-error');
+			if(reqDate == "") {
+				$("#reqDate").after('<p class="text-danger"> Please provide Requisition Date </p>');
+				$('#reqDate').closest('.form-group').addClass('has-error');
 			} else {
-				$('#orderDate').closest('.form-group').addClass('has-success');
+				$('#reqDate').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(clientName == "") {
-				$("#clientName").after('<p class="text-danger"> The Client Name field is required </p>');
-				$('#clientName').closest('.form-group').addClass('has-error');
+			if(reqBy == "") {
+				$("#reqBy").after('<p class="text-danger"> Please provide Requisition By whom </p>');
+				$('#reqBy').closest('.form-group').addClass('has-error');
 			} else {
-				$('#clientName').closest('.form-group').addClass('has-success');
+				$('#reqBy').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(clientContact == "") {
-				$("#clientContact").after('<p class="text-danger"> The Contact field is required </p>');
-				$('#clientContact').closest('.form-group').addClass('has-error');
+			if(deptName == "") {
+				$("#deptName").after('<p class="text-danger"> Please provide Department Name </p>');
+				$('#deptName').closest('.form-group').addClass('has-error');
 			} else {
-				$('#clientContact').closest('.form-group').addClass('has-success');
+				$('#deptName').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(paid == "") {
-				$("#paid").after('<p class="text-danger"> The Paid field is required </p>');
-				$('#paid').closest('.form-group').addClass('has-error');
+			if(compName == "") {
+				$("#compName").after('<p class="text-danger"> Please provide Company Name </p>');
+				$('#compName').closest('.form-group').addClass('has-error');
 			} else {
-				$('#paid').closest('.form-group').addClass('has-success');
+				$('#compName').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(discount == "") {
-				$("#discount").after('<p class="text-danger"> The Discount field is required </p>');
-				$('#discount').closest('.form-group').addClass('has-error');
+			if(cityName == "") {
+				$("#cityName").after('<p class="text-danger"> Please provide City Name </p>');
+				$('#cityName').closest('.form-group').addClass('has-error');
 			} else {
-				$('#discount').closest('.form-group').addClass('has-success');
+				$('#cityName').closest('.form-group').addClass('has-success');
+			} // /else
+				
+			if(particularType == "") {
+				$("#particularType").after('<p class="text-danger"> Please provide Particular Name </p>');
+				$('#particularType').closest('.form-group').addClass('has-error');
+			} else {
+				$('#particularType').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(paymentType == "") {
-				$("#paymentType").after('<p class="text-danger"> The Payment Type field is required </p>');
-				$('#paymentType').closest('.form-group').addClass('has-error');
+			if(dispatchCenter == "") {
+				$("#dispatchCenter").after('<p class="text-danger"> Please provide Dispatch Center</p>');
+				$('#dispatchCenter').closest('.form-group').addClass('has-error');
 			} else {
-				$('#paymentType').closest('.form-group').addClass('has-success');
+				$('#dispatchCenter').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(paymentStatus == "") {
-				$("#paymentStatus").after('<p class="text-danger"> The Payment Status field is required </p>');
-				$('#paymentStatus').closest('.form-group').addClass('has-error');
+			if(challan == "") {
+				$("#challan").after('<p class="text-danger"> Please provide Challan No. </p>');
+				$('#challan').closest('.form-group').addClass('has-error');
 			} else {
-				$('#paymentStatus').closest('.form-group').addClass('has-success');
+				$('#challan').closest('.form-group').addClass('has-success');
+			} // /else
+			if(invValue == "") {
+				$("#invValue").after('<p class="text-danger"> Please provide Invoice Value </p>');
+				$('#invValue').closest('.form-group').addClass('has-error');
+			} else {
+				$('#invValue').closest('.form-group').addClass('has-success');
+			} // /else
+				
+			if(courierStatus == "") {
+				$("#courierStatus").after('<p class="text-danger"> Please assign Courier Status </p>');
+				$('#courierStatus').closest('.form-group').addClass('has-error');
+			} else {
+				$('#courierStatus').closest('.form-group').addClass('has-success');
 			} // /else
 
 
 			// array validation
-			var productName = document.getElementsByName('productName[]');				
-			var validateProduct;
-			for (var x = 0; x < productName.length; x++) {       			
-				var productNameId = productName[x].id;	    	
-		    if(productName[x].value == ''){	    		    	
-		    	$("#"+productNameId+"").after('<p class="text-danger"> Product Name Field is required!! </p>');
-		    	$("#"+productNameId+"").closest('.form-group').addClass('has-error');	    		    	    	
+			var itemDescription = document.getElementsByName('description[]');				
+			var validateitemcode;
+			for (var x = 0; x < itemDescription.length; x++) {       			
+				var itemDescriptionId = itemDescription[x].id;	    	
+		    if(itemDescription[x].value == ''){	    		    	
+		    	$("#"+itemDescriptionId+"").after('<p class="text-danger"> Please enter details of Particular. </p>');
+		    	$("#"+itemDescriptionId+"").closest('.form-group').addClass('has-error');	    		    	    	
 	      } else {      	
-		    	$("#"+productNameId+"").closest('.form-group').addClass('has-success');	    		    		    	
+		    	$("#"+itemDescriptionId+"").closest('.form-group').addClass('has-success');	    		    		    	
 	      }          
 	   	} // for
 
-	   	for (var x = 0; x < productName.length; x++) {       						
-		    if(productName[x].value){	    		    		    	
-		    	validateProduct = true;
+	   	for (var x = 0; x < itemDescription.length; x++) {       						
+		    if(itemDescription[x].value){	    		    		    	
+		    	validateitemcode = true;
 	      } else {      	
-		    	validateProduct = false;
+		    	validateitemcode = false;
 	      }          
 	   	} // for       		   	
 	   	
@@ -283,7 +325,7 @@ $(document).ready(function() {
 	   	for (var x = 0; x < quantity.length; x++) {       
 	 			var quantityId = quantity[x].id;
 		    if(quantity[x].value == ''){	    	
-		    	$("#"+quantityId+"").after('<p class="text-danger"> Product Name Field is required!! </p>');
+		    	$("#"+quantityId+"").after('<p class="text-danger"> Please enter details of Particular. </p>');
 		    	$("#"+quantityId+"").closest('.form-group').addClass('has-error');	    		    		    	
 	      } else {      	
 		    	$("#"+quantityId+"").closest('.form-group').addClass('has-success');	    		    		    		    	
@@ -299,10 +341,10 @@ $(document).ready(function() {
 	   	} // for       	
 	   	
 
-			if(orderDate && clientName && clientContact && paid && discount && paymentType && paymentStatus) {
-				if(validateProduct == true && validateQuantity == true) {
-					// create order button
-					// $("#createOrderBtn").button('loading');
+			if(reqDate && reqBy && deptName && compName && cityName && particularType && dispatchCenter && challan && invValue && dispatchCenter) {
+				if(validateitemcode == true && validateQuantity == true) {
+					// create courier button
+					// $("#createCourierBtn").button('loading');
 
 					$.ajax({
 						url : form.attr('action'),
@@ -312,17 +354,18 @@ $(document).ready(function() {
 						success:function(response) {
 							console.log(response);
 							// reset button
-							$("#editOrderBtn").button('reset');
+							$("#editCourierBtn").button('reset');
 							
 							$(".text-danger").remove();
 							$('.form-group').removeClass('has-error').removeClass('has-success');
 
 							if(response.success == true) {
 								
-								// create order button
+								// create courier button
 								$(".success-messages").html('<div class="alert alert-success">'+
 	            	'<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-	            	'<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +	            		            		            	
+	            	'<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +' <br /> <br />'+
+	            	'<a href="courier.php?o=mancour" class="btn btn-default" style="margin-left:10px;"> <i class="glyphicon glyphicon-edit"></i> Edit Other Courier </a>'+	            		            		            	
 	   		       '</div>');
 								
 							$("html, body, div.panel, div.pane-body").animate({scrollTop: '0px'}, 100);
@@ -330,7 +373,7 @@ $(document).ready(function() {
 							// disabled te modal footer button
 							$(".editButtonFooter").addClass('div-hide');
 							// remove the product row
-							$(".removeProductRowBtn").addClass('div-hide');
+							$(".removeItemRowBtn").addClass('div-hide');
 								
 							} else {
 								alert(response.messages);								
@@ -342,10 +385,188 @@ $(document).ready(function() {
 			
 
 			return false;
-		}); // /edit order form function	
-	} 	
+		}); // /dispatch courier modal function	
+	} else if(divRequest == 'dispatchcour') {
+		
+		$("#disDate").datepicker();
+		
+		
+		// dispatch courier form function
+		$("#dispatchCourierForm").unbind('submit').bind('submit', function() {
+			 //alert('ok');
+			var form = $(this);
 
+			$('.form-group').removeClass('has-error').removeClass('has-success');
+			$('.text-danger').remove();
+				
+			var reqDate = $("#reqDate").val();
+			var disDate = $("#disDate").val();
+			var mode = $("#mode").val();
+			var courierComp = $("#courierComp").val();
+			var pod = $("#pod").val();
+			var empId = $("#empId").val();
+			var empName = $("#empName").val();
+			var weight = $("#weight").val();
+			var finalStatus = $("#finalStatus").val();		
+			//alert('ok');
+			//alert(disDate);
+			
+			
+			// form validation 
+			if(disDate == "") {
+				$("#disDate").after('<p class="text-danger"> Please provide Dispatch Date </p>');
+				$('#disDate').closest('.form-group').addClass('has-error');
+			} else {
+				$('#disDate').closest('.form-group').addClass('has-success');
+			} // /else
+				
+			if(mode == "") {
+				$("#mode").after('<p class="text-danger"> Please provide Mode of Dispatch </p>');
+				$('#mode').closest('.form-group').addClass('has-error');
+			} else {
+				$('#mode').closest('.form-group').addClass('has-success');
+			} // /else
+				
+			if(mode == "1") {
+				$("#mode").after('<p class="text-danger"> Please provide details of Dispatch </p>');
+				$('#mode').closest('.form-group').addClass('has-error');
+			} else {
+				$('#mode').closest('.form-group').addClass('has-success');
+			} // /else
+				
+			if(mode == "2") {
+				$("#mode").after('<p class="text-danger"> Please provide details of Dispatch </p>');
+				$('#mode').closest('.form-group').addClass('has-error');
+			} else {
+				$('#mode').closest('.form-group').addClass('has-success');
+			} // /else
+
+			/*if(courierComp == "") {
+				$("#courierComp").after('<p class="text-danger"> Please provide Courier Service Name </p>');
+				$('#courierComp').closest('.form-group').addClass('has-error');
+			} else {
+				$('#courierComp').closest('.form-group').addClass('has-success');
+			} // /else
+
+			if(pod == "") {
+				$("#pod").after('<p class="text-danger"> Please provide POD No. </p>');
+				$('#pod').closest('.form-group').addClass('has-error');
+			} else {
+				$('#pod').closest('.form-group').addClass('has-success');
+			} // /else
+				
+			if(empId == "") {
+				$("#empId").after('<p class="text-danger"> Please provide Employee ID </p>');
+				$('#empId').closest('.form-group').addClass('has-error');
+			} else {
+				$('#empId').closest('.form-group').addClass('has-success');
+			} // /else
+
+			if(empName == "") {
+				$("#empName").after('<p class="text-danger"> Please provide Employee Name</p>');
+				$('#empName').closest('.form-group').addClass('has-error');
+			} else {
+				$('#empName').closest('.form-group').addClass('has-success');
+			} // /else*/
+
+			if(weight == "") {
+				$("#weight").after('<p class="text-danger"> Please provide Weight of Courier </p>');
+				$('#weight').closest('.form-group').addClass('has-error');
+			} else {
+				$('#weight').closest('.form-group').addClass('has-success');
+			} // /else
+			if(finalStatus == "") {
+				$("#finalStatus").after('<p class="text-danger"> Please provide Dispatch Status Value </p>');
+				$('#finalStatus').closest('.form-group').addClass('has-error');
+			} else {
+				$('#finalStatus').closest('.form-group').addClass('has-success');
+			} // /else
+				
+
+
+	   	
+
+			if(disDate && mode && courierComp && pod && weight && finalStatus) {
+					// create courier button
+					// $("#createCourierBtn").button('loading');
+
+					$.ajax({
+						url : form.attr('action'),
+						type: form.attr('method'),
+						data: form.serialize(),					
+						dataType: 'json',
+						success:function(response) {
+							console.log(response);
+							// reset button
+							$("#dispatchCourierBtn").button('reset');
+							
+							$(".text-danger").remove();
+							$('.form-group').removeClass('has-error').removeClass('has-success');
+
+							if(response.success == true) {
+								
+								// create courier button
+								$(".success-messages").html('<div class="alert alert-success">'+
+								'<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+								'<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +' <br /> <br />'+
+								'<a href="courier.php?o=mancour" class="btn btn-default" style="margin-left:10px;"> <i class="glyphicon glyphicon-wrench"></i> Update Other Courier </a>'+
+	            		            		            	
+							   '</div>');
+								
+							$("html, body, div.panel, div.pane-body").animate({scrollTop: '0px'}, 100);
+
+							// disabled te modal footer button
+							$(".editButtonFooter").addClass('div-hide');
+								
+							} else {
+								alert(response.messages);								
+							}
+						} // // /response
+					}); // /ajax
+			} // /if field validate is true
+			else if(disDate && mode && empId && empName && weight && finalStatus){
+					$.ajax({
+						url : form.attr('action'),
+						type: form.attr('method'),
+						data: form.serialize(),					
+						dataType: 'json',
+						success:function(response) {
+							console.log(response);
+							// reset button
+							$("#dispatchCourierBtn").button('reset');
+							
+							$(".text-danger").remove();
+							$('.form-group').removeClass('has-error').removeClass('has-success');
+
+							if(response.success == true) {
+								
+								// create courier button
+								$(".success-messages").html('<div class="alert alert-success">'+
+								'<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+								'<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +' <br /> <br />'+
+								'<a href="courier.php?o=mancour" class="btn btn-default" style="margin-left:10px;"> <i class="glyphicon glyphicon-wrench"></i> Update Other Courier </a>'+
+	            		            		            	
+							   '</div>');
+								
+							$("html, body, div.panel, div.pane-body").animate({scrollTop: '0px'}, 100);
+
+							// disabled te modal footer button
+							$(".editButtonFooter").addClass('div-hide');
+								
+							} else {
+								alert(response.messages);								
+							}
+						} // // /response
+					}); // /ajax
+				
+			}
+
+			return false;
+		}); // /dispatch courier modal function	
+	}
 }); // /documernt
+
+
 
 
 
@@ -369,265 +590,160 @@ function addRow() {
 		count = 1;
 		arrayNumber = 0;
 	}
-
-	$.ajax({
-		url: 'php_action/fetchProductData.php',
+		$.ajax({
+		url: 'php_action/fetchItemData.php',
 		type: 'post',
 		dataType: 'json',
 		success:function(response) {
+
 			$("#addRowBtn").button("reset");			
 
 			var tr = '<tr id="row'+count+'" class="'+arrayNumber+'">'+			  				
-				'<td style="padding-left:20px;"">'+
-					'<input type="text" name="rate[]" id="rate'+count+'" autocomplete="off" disabled="true" class="form-control" />'+
-					'<input type="hidden" name="rateValue[]" id="rateValue'+count+'" autocomplete="off" class="form-control" />'+
-				'</td style="padding-left:20px;">'+
-				'<td style="padding-left:20px;">'+
-					'<div class="form-group">'+
-					'<input type="number" name="quantity[]" id="quantity'+count+'" onkeyup="getTotal('+count+')" autocomplete="off" class="form-control" min="1" />'+
-					'</div>'+
-				'</td>'+
-				'<td style="padding-left:20px;">'+
-					'<input type="text" name="total[]" id="total'+count+'" autocomplete="off" class="form-control" disabled="true" />'+
-					'<input type="hidden" name="totalValue[]" id="totalValue'+count+'" autocomplete="off" class="form-control" />'+
+				'<td>'+
+						'<select class="form-control" name="description[]" id="description'+count+'" onchange="getItemData('+count+')" >'+
+						'<option value="">~~SELECT~~</option>';
+						 //console.log(response);
+						$.each(response, function(index, value) {
+							tr += '<option value="'+value[0]+'">'+value[1]+'</option>';							
+						});
+													
+					tr += '</select>'+
 				'</td>'+
 				'<td>'+
-					'<button class="btn btn-default removeProductRowBtn" type="button" onclick="removeProductRow('+count+')"><i class="glyphicon glyphicon-trash"></i></button>'+
+					'<input type="text" name="itemcode[]" id="itemcode'+count+'" autocomplete="off" disabled="true" class="form-control"/>'+
+					'<input type="hidden" name="itemcodeValue[]" id="itemcodeValue'+count+'" autocomplete="off"  class="form-control" />'+
+				'</td>'+
+				'<td>'+
+					'<input type="number" name="amount[]" id="amount'+count+'"  autocomplete="off" class="form-control" min="1" />'+
+				'</td>'+
+				'<td>'+
+					'<input type="number" name="unit[]" id="unit'+count+'" autocomplete="off" class="form-control" min="1" />'+
+				'</td>'+
+				'<td>'+
+					'<input type="number" name="quantity[]" id="quantity'+count+'" autocomplete="off" class="form-control"  />'+
+				'</td>'+
+				'<td>'+
+					'<button class="btn btn-default removeItemRowBtn" type="button"  onclick="removeItemRow('+count+')"><i class="fas fa-trash">&nbsp;</i></button>'+
 				'</td>'+
 			'</tr>';
 			if(tableLength > 0) {							
-				$("#productTable tbody tr:last").after(tr);
+				$("#particularTable tbody tr:last").after(tr);
 			} else {				
-				$("#productTable tbody").append(tr);
-			}		
-
+				$("#particularTable tbody").append(tr);
+			}
 		} // /success
 	});	// get the product data
-
 } // /add row
 
-function removeProductRow(row = null) {
+function removeItemRow(row = null) {
 	if(row) {
 		$("#row"+row).remove();
 
 
-		subAmount();
 	} else {
 		alert('error! Refresh the page again');
 	}
 }
 
+
+function fun_showtextbox()
+{
+    var select_status=$('#mode').val();
+    /* if select hand from select box then show my text box */
+    //alert(select_status);
+if(select_status == '1')
+    {
+        $('#byCourier').show();// By using this id you can show your content    
+    }
+    else
+    {
+        $('#byCourier').hide();// otherwise hide   
+    }
+	
+if(select_status == '2')
+    {
+        $('#byHand').show();// By using this id you can show your content    
+    }
+    else
+    {
+        $('#byHand').hide();// otherwise hide   
+    }
+    
+}
+
 // select on product data
-function getProductData(row = null) {
+function getItemData(row = null) {
 	if(row) {
-		var productId = $("#productName"+row).val();		
+		var itemId = $("#description"+row).val();	
+					//alert(itemId);
 		
-		if(productId == "") {
-			$("#rate"+row).val("");
+		if(itemId == "") {
+			$("#itemcode"+row).val("");
 
-			$("#quantity"+row).val("");						
-			$("#total"+row).val("");
 
-			// remove check if product name is selected
-			// var tableProductLength = $("#productTable tbody tr").length;			
-			// for(x = 0; x < tableProductLength; x++) {
-			// 	var tr = $("#productTable tbody tr")[x];
-			// 	var count = $(tr).attr('id');
-			// 	count = count.substring(3);
-
-			// 	var productValue = $("#productName"+row).val()
-
-			// 	if($("#productName"+count).val() == "") {					
-			// 		$("#productName"+count).find("#changeProduct"+productId).removeClass('div-hide');	
-			// 		console.log("#changeProduct"+count);
-			// 	}											
-			// } // /for
 
 		} else {
 			$.ajax({
-				url: 'php_action/fetchSelectedProduct.php',
+				url: 'php_action/fetchSelectedItem.php',
 				type: 'post',
-				data: {productId : productId},
+				data: {itemId : itemId},
 				dataType: 'json',
 				success:function(response) {
-					// setting the rate value into the rate input field
-					
-					$("#rate"+row).val(response.rate);
-					$("#rateValue"+row).val(response.rate);
+					// setting the itemcode value into the itemcode input field
+					$("#itemcode"+row).val(response.item_code);
+					$("#itemcodeValue"+row).val(response.item_code);
 
 					$("#quantity"+row).val(1);
-
-					var total = Number(response.rate) * 1;
-					total = total.toFixed(2);
-					$("#total"+row).val(total);
-					$("#totalValue"+row).val(total);
-					
-					// check if product name is selected
-					// var tableProductLength = $("#productTable tbody tr").length;					
-					// for(x = 0; x < tableProductLength; x++) {
-					// 	var tr = $("#productTable tbody tr")[x];
-					// 	var count = $(tr).attr('id');
-					// 	count = count.substring(3);
-
-					// 	var productValue = $("#productName"+row).val()
-
-					// 	if($("#productName"+count).val() != productValue) {
-					// 		// $("#productName"+count+" #changeProduct"+count).addClass('div-hide');	
-					// 		$("#productName"+count).find("#changeProduct"+productId).addClass('div-hide');								
-					// 		console.log("#changeProduct"+count);
-					// 	}											
-					// } // /for
-			
-					subAmount();
 				} // /success
-			}); // /ajax function to fetch the product data	
+			}); // /ajax function to fetch the item data	
 		}
 				
 	} else {
 		alert('no row! please refresh the page');
 	}
-} // /select on product data
-
-// table total
-function getTotal(row = null) {
-	if(row) {
-		var total = Number($("#rate"+row).val()) * Number($("#quantity"+row).val());
-		total = total.toFixed(2);
-		$("#total"+row).val(total);
-		$("#totalValue"+row).val(total);
-		
-		subAmount();
-
-	} else {
-		alert('no row !! please refresh the page');
-	}
-}
-
-function subAmount() {
-	var tableProductLength = $("#productTable tbody tr").length;
-	var totalSubAmount = 0;
-	for(x = 0; x < tableProductLength; x++) {
-		var tr = $("#productTable tbody tr")[x];
-		var count = $(tr).attr('id');
-		count = count.substring(3);
-
-		totalSubAmount = Number(totalSubAmount) + Number($("#total"+count).val());
-	} // /for
-
-	totalSubAmount = totalSubAmount.toFixed(2);
-
-	// sub total
-	$("#subTotal").val(totalSubAmount);
-	$("#subTotalValue").val(totalSubAmount);
-
-	// vat
-	var vat = (Number($("#subTotal").val())/100) * 13;
-	vat = vat.toFixed(2);
-	$("#vat").val(vat);
-	$("#vatValue").val(vat);
-
-	// total amount
-	var totalAmount = (Number($("#subTotal").val()) + Number($("#vat").val()));
-	totalAmount = totalAmount.toFixed(2);
-	$("#totalAmount").val(totalAmount);
-	$("#totalAmountValue").val(totalAmount);
-
-	var discount = $("#discount").val();
-	if(discount) {
-		var grandTotal = Number($("#totalAmount").val()) - Number(discount);
-		grandTotal = grandTotal.toFixed(2);
-		$("#grandTotal").val(grandTotal);
-		$("#grandTotalValue").val(grandTotal);
-	} else {
-		$("#grandTotal").val(totalAmount);
-		$("#grandTotalValue").val(totalAmount);
-	} // /else discount	
-
-	var paidAmount = $("#paid").val();
-	if(paidAmount) {
-		paidAmount =  Number($("#grandTotal").val()) - Number(paidAmount);
-		paidAmount = paidAmount.toFixed(2);
-		$("#due").val(paidAmount);
-		$("#dueValue").val(paidAmount);
-	} else {	
-		$("#due").val($("#grandTotal").val());
-		$("#dueValue").val($("#grandTotal").val());
-	} // else
-
-} // /sub total amount
-
-function discountFunc() {
-	var discount = $("#discount").val();
- 	var totalAmount = Number($("#totalAmount").val());
- 	totalAmount = totalAmount.toFixed(2);
-
- 	var grandTotal;
- 	if(totalAmount) { 	
- 		grandTotal = Number($("#totalAmount").val()) - Number($("#discount").val());
- 		grandTotal = grandTotal.toFixed(2);
-
- 		$("#grandTotal").val(grandTotal);
- 		$("#grandTotalValue").val(grandTotal);
- 	} else {
- 	}
-
- 	var paid = $("#paid").val();
-
- 	var dueAmount; 	
- 	if(paid) {
- 		dueAmount = Number($("#grandTotal").val()) - Number($("#paid").val());
- 		dueAmount = dueAmount.toFixed(2);
-
- 		$("#due").val(dueAmount);
- 		$("#dueValue").val(dueAmount);
- 	} else {
- 		$("#due").val($("#grandTotal").val());
- 		$("#dueValue").val($("#grandTotal").val());
- 	}
-
-} // /discount function
-
-function paidAmount() {
-	var grandTotal = $("#grandTotal").val();
-
-	if(grandTotal) {
-		var dueAmount = Number($("#grandTotal").val()) - Number($("#paid").val());
-		dueAmount = dueAmount.toFixed(2);
-		$("#due").val(dueAmount);
-		$("#dueValue").val(dueAmount);
-	} // /if
-} // /paid amoutn function
+} // /select on item data
 
 
-function resetOrderForm() {
+
+
+function resetCourierForm() {
 	// reset the input field
-	$("#createOrderForm")[0].reset();
+	$("#createCourierForm")[0].reset();
 	// remove remove text danger
 	$(".text-danger").remove();
 	// remove form group error 
 	$(".form-group").removeClass('has-success').removeClass('has-error');
-} // /reset order form
+} // /reset courier form
 
+
+function resetdispatchCourierForm() {
+	// reset the input field
+	$("#dispatchCourierForm")[0].reset();
+	// remove remove text danger
+	$(".text-danger").remove();
+	// remove form group error 
+	$(".form-group").removeClass('has-success').removeClass('has-error');
+} // /reset courier form
 
 // remove order from server
-function removeOrder(orderId = null) {
-	if(orderId) {
-		$("#removeOrderBtn").unbind('click').bind('click', function() {
-			$("#removeOrderBtn").button('loading');
+function removeCourier(courierId = null) {
+	if(courierId) {
+		$("#removeCourierBtn").unbind('click').bind('click', function() {
+			$("#removeCourierBtn").button('loading');
 
 			$.ajax({
-				url: 'php_action/removeOrder.php',
+				url: 'php_action/removeCourier.php',
 				type: 'post',
-				data: {orderId : orderId},
+				data: {courierId : courierId},
 				dataType: 'json',
 				success:function(response) {
-					$("#removeOrderBtn").button('reset');
+					$("#removeCourierBtn").button('reset');
 
 					if(response.success == true) {
 
-						manageOrderTable.ajax.reload(null, false);
+						manageCourierTable.ajax.reload(null, false);
 						// hide modal
-						$("#removeOrderModal").modal('hide');
+						$("#removeCourierModal").modal('hide');
 						// success messages
 						$("#success-messages").html('<div class="alert alert-success">'+
 	            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
@@ -643,7 +759,7 @@ function removeOrder(orderId = null) {
 
 					} else {
 						// error messages
-						$(".removeOrderMessages").html('<div class="alert alert-warning">'+
+						$(".removeCourierMessages").html('<div class="alert alert-warning">'+
 	            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
 	            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
 	          '</div>');
@@ -668,105 +784,18 @@ function removeOrder(orderId = null) {
 }
 // /remove order from server
 
-// Payment ORDER
-function paymentOrder(orderId = null) {
-	if(orderId) {
 
-		$("#orderDate").datepicker();
+function dateCheck() {
 
-		$.ajax({
-			url: 'php_action/fetchOrderData.php',
-			type: 'post',
-			data: {orderId: orderId},
-			dataType: 'json',
-			success:function(response) {				
+    var disDate,reqDate;
+    disDate = Date.parse(document.getElementById("disDate").value);
+    reqDate = Date.parse(document.getElementById("reqDate").value);
 
-				// due 
-				$("#due").val(response.order[10]);				
+    if(reqDate > disDate) {
+    alert("Dispatch Date can not be less than Requisition date");
+    return false;
+    } 
 
-				// pay amount 
-				$("#payAmount").val(response.order[10]);
-
-				var paidAmount = response.order[9] 
-				var dueAmount = response.order[10];							
-				var grandTotal = response.order[8];
-
-				// update payment
-				$("#updatePaymentOrderBtn").unbind('click').bind('click', function() {
-					var payAmount = $("#payAmount").val();
-					var paymentType = $("#paymentType").val();
-					var paymentStatus = $("#paymentStatus").val();
-
-					if(payAmount == "") {
-						$("#payAmount").after('<p class="text-danger">The Pay Amount field is required</p>');
-						$("#payAmount").closest('.form-group').addClass('has-error');
-					} else {
-						$("#payAmount").closest('.form-group').addClass('has-success');
-					}
-
-					if(paymentType == "") {
-						$("#paymentType").after('<p class="text-danger">The Pay Amount field is required</p>');
-						$("#paymentType").closest('.form-group').addClass('has-error');
-					} else {
-						$("#paymentType").closest('.form-group').addClass('has-success');
-					}
-
-					if(paymentStatus == "") {
-						$("#paymentStatus").after('<p class="text-danger">The Pay Amount field is required</p>');
-						$("#paymentStatus").closest('.form-group').addClass('has-error');
-					} else {
-						$("#paymentStatus").closest('.form-group').addClass('has-success');
-					}
-
-					if(payAmount && paymentType && paymentStatus) {
-						$("#updatePaymentOrderBtn").button('loading');
-						$.ajax({
-							url: 'php_action/editPayment.php',
-							type: 'post',
-							data: {
-								orderId: orderId,
-								payAmount: payAmount,
-								paymentType: paymentType,
-								paymentStatus: paymentStatus,
-								paidAmount: paidAmount,
-								grandTotal: grandTotal
-							},
-							dataType: 'json',
-							success:function(response) {
-								$("#updatePaymentOrderBtn").button('loading');
-
-								// remove error
-								$('.text-danger').remove();
-								$('.form-group').removeClass('has-error').removeClass('has-success');
-
-								$("#paymentOrderModal").modal('hide');
-
-								$("#success-messages").html('<div class="alert alert-success">'+
-			            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-			            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
-			          '</div>');
-
-								// remove the mesages
-			          $(".alert-success").delay(500).show(10, function() {
-									$(this).delay(3000).hide(10, function() {
-										$(this).remove();
-									});
-								}); // /.alert	
-
-			          // refresh the manage order table
-								manageOrderTable.ajax.reload(null, false);
-
-							} //
-
-						});
-					} // /if
-						
-					return false;
-				}); // /update payment			
-
-			} // /success
-		}); // fetch order data
-	} else {
-		alert('Error ! Refresh the page again');
-	}
 }
+
+

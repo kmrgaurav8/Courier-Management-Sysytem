@@ -4,7 +4,7 @@ require_once 'php_action/db_connect.php';
 session_start();
 
 if(isset($_SESSION['userId'])) {
-	header('location: dashboard.php');	
+	header('location: dashboard');	
 }
 
 $errors = array();
@@ -39,7 +39,7 @@ if($_POST) {
 				// set session
 				$_SESSION['userId'] = $user_id;
 
-				header('location: dashboard.php');	
+				header('location: dashboard');	
 			} else{
 				
 				$errors[] = "Incorrect username/password combination";
@@ -65,43 +65,25 @@ if($_POST) {
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/custom.css" rel="stylesheet">
     <link href="assets/css/styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/sample.css">
-  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-	<script type="text/javascript"> 
-function display_c(){
-var refresh=1000; // Refresh rate in milli seconds
-mytime=setTimeout('display_ct()',refresh)
-}
-
-function display_ct() {
-var strcount
-var x = new Date();
-var n = x.toString();
-var pos = n.indexOf('GMT');
-var res = n.substring(0, pos);
-document.getElementById('ct').innerHTML = res;
-tt=display_c();
-}
-
-</script>
-
+    <link rel="stylesheet" href="assets/css/sample.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 </head>
 <body>
 	<div class="body-content">
-		<div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="col-lg-4 col-md-4 col-sm-4">
 			
-		</div>
-		<div class="col-lg-4 col-md-4 col-sm-4">
-		<h3 style="color: aliceblue;text-align: center;"><img src="assets/images/mahendras.png"  height="30" alt="Mahendra's" />Courier Management System</h3>
-					<div class="messages"><br><br><br>
-						<?php if($errors) {
-						foreach ($errors as $key => $value) {
-							echo '<div class="alert alert-warning" role="alert">
-							<i class="glyphicon glyphicon-exclamation-sign"></i>
-							'.$value.'</div>';										
-							}
-						} ?>
-					</div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+            <h3 style="color: aliceblue;text-align: center;"><img src="assets/images/mahendras.png"  height="30" alt="Mahendra's" />Courier Management System</h3>
+                <div class="messages"><br><br><br>
+                        <?php if($errors) {
+                        foreach ($errors as $key => $value) {
+                                echo '<div class="alert alert-warning" role="alert">
+                                <i class="glyphicon glyphicon-exclamation-sign"></i>
+                                '.$value.'</div>';										
+                                }
+                        } ?>
+                </div>
 			
 			<div id="hardware-box" class="well well-lg">
 				

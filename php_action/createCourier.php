@@ -2,62 +2,53 @@
 
 require_once 'core.php';
 
-$valid['success'] = array('success' => false, 'messages' => array(), 'order_id' => '');
-// print_r($valid);
+$valid['success'] = array('success' => false, 'messages' => array(), 'courier_id' => '');
+//print_r($valid);
 if($_POST) {	
 
-$orderDate 					= date('Y-m-d', strtotime($_POST['orderDate']));	
-  $clientName 					= $_POST['clientName'];
-  $clientContact 				= $_POST['clientContact'];
-  $subTotalValue 				= $_POST['subTotalValue'];
-  $vatValue 						=	$_POST['vatValue'];
-  $totalAmountValue     = $_POST['totalAmountValue'];
-  $discount 						= $_POST['discount'];
-  $grandTotalValue 			= $_POST['grandTotalValue'];
-  $paid 								= $_POST['paid'];
-  $dueValue 						= $_POST['dueValue'];
-  $paymentType 					= $_POST['paymentType'];
-  $paymentStatus 				= $_POST['paymentStatus'];
+  $reqDate 					= date('Y-m-d', strtotime($_POST['reqDate']));	
+  $reqBy 					= $_POST['reqBy'];
+  $deptName 				= $_POST['deptName'];
+  $compName 				= $_POST['compName'];
+  $cityName 				= $_POST['cityName'];
+  $particularType     		= $_POST['particularType'];
+  $dispatchCenter 			= $_POST['dispatchCenter'];
+  $challan 					= $_POST['challan'];
+  $invValue 				= $_POST['invValue'];
+  $courierStatus			= $_POST['courierStatus'];
+
+  /*$itemcode 				= $_POST['itemcode'];
+  $desc 					= $_POST['desc'];
+  $amount 					= $_POST['amount'];
+  $unit 					= $_POST['unit'];
+  $quantity 				= $_POST['quantity'];*/
 
 				
-	$sql = "INSERT INTO orders (order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due, payment_type, payment_status, order_status) VALUES ('$orderDate', '$clientName', '$clientContact', '$subTotalValue', '$vatValue', '$totalAmountValue', '$discount', '$grandTotalValue', '$paid', '$dueValue', $paymentType, $paymentStatus, 1)";
+	$sql = "INSERT INTO courier (req_date, req_by, dept_name, comp_name , city_name, part_name, dispatch_center, challan_no, inv_value, courier_status, Status) VALUES ('$reqDate', '$reqBy', '$deptName', '$compName', '$cityName', '$particularType', '$dispatchCenter', '$challan', '$invValue', '$courierStatus', 1)";
 	
-	
-	$order_id;
-	$orderStatus = false;
+	$courier_id;
+	$courierStatus = false;
 	if($connect->query($sql) === true) {
-		$order_id = $connect->insert_id;
-		$valid['order_id'] = $order_id;	
+		$courier_id = $connect->insert_id;
+		$valid['courier_id'] = $courier_id;	
 
-		$orderStatus = true;
+		$courierStatus = true;
 	}
+		//echo $_POST['description'];
 
-		
-	// echo $_POST['productName'];
-	$orderItemStatus = false;
+	$courierItemStatus = false;
+	for($x = 0; $x < count($_POST['description']); $x++) 
+	{			
 
-	for($x = 0; $x < count($_POST['productName']); $x++) {			
-		$updateProductQuantitySql = "SELECT product.quantity FROM product WHERE product.product_id = ".$_POST['productName'][$x]."";
-		$updateProductQuantityData = $connect->query($updateProductQuantitySql);
-		
-		
-		while ($updateProductQuantityResult = $updateProductQuantityData->fetch_row()) {
-			$updateQuantity[$x] = $updateProductQuantityResult[0] - $_POST['quantity'][$x];							
-				// update product table
-				$updateProductTable = "UPDATE product SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName'][$x]."";
-				$connect->query($updateProductTable);
+	// add into courier_item
+	$courierItemSql = "INSERT INTO courier_item (courier_id, item_id, item_code, amount, unit, quantity, courier_item_status) 
+	VALUES ('$courier_id', '".$_POST['description'][$x]."', '".$_POST['itemcodeValue'][$x]."', '".$_POST['amount'][$x]."', '".$_POST['unit'][$x]."', '".$_POST['quantity'][$x]."', 1)";
 
-				// add into order_item
-				$orderItemSql = "INSERT INTO order_item (order_id, product_id, quantity, rate, total, order_item_status) 
-				VALUES ('$order_id', '".$_POST['productName'][$x]."', '".$_POST['quantity'][$x]."', '".$_POST['rateValue'][$x]."', '".$_POST['totalValue'][$x]."', 1)";
-
-				$connect->query($orderItemSql);		
-
-				if($x == count($_POST['productName'])) {
-					$orderItemStatus = true;
-				}		
-		} // while	
-	} // /for quantity
+	$connect->query($courierItemSql);		
+				if($x == count($_POST['description'])) {
+					$courierItemStatus = true;
+				}
+	}				
 
 	$valid['success'] = true;
 	$valid['messages'] = "Successfully Added";		
@@ -65,6 +56,5 @@ $orderDate 					= date('Y-m-d', strtotime($_POST['orderDate']));
 	$connect->close();
 
 	echo json_encode($valid);
- 
-} // /if $_POST
-// echo json_encode($valid);
+
+}

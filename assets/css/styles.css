@@ -13,6 +13,15 @@ body {
   margin-top: 30px;
 }
 
+.required label {
+    font-weight: bold !important;
+}
+.required label:after {
+    color: #e32 !important;
+    content: ' *' !important;
+    display:inline !important;
+}
+
 /* Footer */
 
 footer{

@@ -2,6 +2,8 @@
 <html>
   <head>
     <title><?php echo $pageTitle; ?></title>
+    <?php require_once 'php_action/core.php'; 
+	?>
 	
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +16,7 @@
     <!-- styles -->
     <link href="assets/css/styles.css" rel="stylesheet">
 	<link href="assets/vendors/datatables/dataTables.bootstrap.css" rel="stylesheet" media="screen">
+	<!--link href="assets/vendors/datatables/css/jquery.dataTables.min.css" rel="stylesheet" media="screen"-->
   	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
 
@@ -34,16 +37,33 @@
 	                 <h1><a href="index.php"><img src="assets/images/mahendras.png"  height="30" alt="Mahendra's" />&nbsp;Courier Management System</a></h1>
 	              </div>
 	           </div>
-	           <div class="col-md-5">
+	           <div class="col-md-2">
 	              <div class="row">
 	                <div class="col-lg-12">
 	                  <div class="input-group form">
-	                       <input type="text" class="form-control" placeholder="Enter any POD No.">
+	                       <input type="text" class="form-control" placeholder="Enter POD No.">
 	                       <span class="input-group-btn">
-	                         <button class="btn btn-primary" type="button">Search</button>
+	                         <button class="btn btn-primary" type="button"><i class="fas fa-search"></i></button>
 	                       </span>
 	                  </div>
 	                </div>
+	              </div>
+	           </div>
+	           <div class="col-md-3">
+	              <div class="navbar navbar-inverse" role="banner">
+	                  <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+	                    <ul class="nav navbar-nav">
+	                      <li class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-map-marked-alt"></i>Track Your Courier <b class="caret"></b></a>
+	                        <ul class="dropdown-menu animated fadeInUp">
+	                          <li><a href="http://firstflight.net/" target="_blank">FirstFlight</a></li>
+	                          <li><a href="http://www.dtdc.in/tracking/shipment-tracking.asp" target="_blank">DTDC</a></li>
+	                          <li><a href="http://www.bluedarttrackings.in/" target="_blank">BlueDart</a></li>
+	                          <li><a href="https://www.aftership.com/couriers" target="_blank">Others</a></li>
+	                        </ul>
+	                      </li>
+	                    </ul>
+	                  </nav>
 	              </div>
 	           </div>
 	           <div class="col-md-2">
